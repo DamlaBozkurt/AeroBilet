@@ -42,7 +42,7 @@ Cypress.Commands.add('findTicket', (from, to, departureDate) => {
   cy.get('input[id="fromAirport"]').click().type('Madrid')
   cy.get('li[class="ui-menu-item"]').click()
   cy.get('input[class="setSelection required airportAutoComplete return clear_input ui-autocomplete-input"]').click().type('Adana')
-  cy.get('li[class="ui-menu-item"]').eq('1').click()
+  //cy.get('li[class="ui-menu-item"]').eq('1').click()
   cy.get('input[id="departureDate"]').click()
   cy.get('td[data-handler="selectDay"]').eq('1').click()
   cy.get('a[class="travelerSelect"]').click()
@@ -104,7 +104,12 @@ Cypress.Commands.add('paymentInfo', (CardNumber, CardExp, CardSec, CardOwner) =>
   //cy.get("#dropdown").select('2022');
   //AFTER ALL THESE STEPS, ı FINALLY OUT THE SOLUTION:
   cy.get('select[id="cc_expire_year"]').select('22').should('have.value', '22')
-  
+  cy.get('select[id="cc_expire_month"]').select('03').should('have.value', '03')
+  cy.get('input[id="cv2"]').click().type(6868)
+  cy.get('input[class="form-control required upperNomark cc_owner_name alphaOnly acceptComma acceptPoint"]').click().type('dd')  
+  cy.get('input[id="use3dSecure"]').click()
+  cy.get('input[id="agree"]').click()
+  cy.get('button[type="button"]').eq('3').click()
 
   })
   
