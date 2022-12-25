@@ -7,7 +7,7 @@ describe('empty spec', () => {
     cy.contactInfo()
     cy.paymentInfo()
 
-    //comment deneme
+    //comment 
 
   })
 })
