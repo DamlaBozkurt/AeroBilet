@@ -102,7 +102,7 @@ Cypress.Commands.add('paymentInfo', (CardNumber, CardExp, CardSec, CardOwner) =>
   //cy.get('span[class="field-value-select"]').eq('1').click('right')
   //cy.contains('span[class="field-arrow"]').find('button').click({force: true})
   //cy.get("#dropdown").select('2022');
-  //AFTER ALL THESE STEPS, ı FINALLY OUT THE SOLUTION:
+  //AFTER ALL THESE STEPS, ı FINALLY FOUND OUT THE SOLUTION:
   cy.get('select[id="cc_expire_year"]').select('22').should('have.value', '22')
   cy.get('select[id="cc_expire_month"]').select('03').should('have.value', '03')
   cy.get('input[id="cv2"]').click().type(6868)
@@ -112,6 +112,25 @@ Cypress.Commands.add('paymentInfo', (CardNumber, CardExp, CardSec, CardOwner) =>
   cy.get('button[type="button"]').eq('3').click()
 
   })
+  Cypress.Commands.add('insurance', (insuranceInfo, travelerInfo) => {
+    cy.get('div[class="clearfix"]').eq('1').click()
+   // cy.get('a[href="/travel-insurance"]').should('have.value', 'insurance').click()
+    cy.get('div[class="col-sm-2 col-xs-4 fn-5 footer-nav-item"]').click()
+    cy.get('input[class="required"]').eq('0').click()
+    cy.get('input[id="travelStartDate"]').click()
+    cy.get('a[href="#"]').contains('31').click()
+    cy.get('input[id="travelEndDate"]').click()
+    cy.get('td[class=" ui-datepicker-week-end "]').eq('0').click()
+    cy.get('a[class="ui-state-default"]').contains('31').click({force: true})
+    cy.get('span[class="ddlabel"]').eq('0').click()
+    cy.get('span[class="ddlabel"]').eq('48').click()
+    cy.get('input[id="adult_name_0"]').click().type('Dams')
+    cy.get('input[id="adult_surname_0"]').click().type('AA')
+    cy.get('input[inputtype="birthdate"]').eq('0').click().type('33557777')
+    cy.get('input[id="adult_idno_0"]').click().type('348759')
+    cy.get('button[class="searchButton btn btn-primary"]').click() 
+   })
+
   
   
   
