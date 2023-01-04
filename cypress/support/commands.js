@@ -1,28 +1,4 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
 Cypress.Commands.add('visitSite', (visitSite) => {
 
   cy.visit()
@@ -76,34 +52,35 @@ Cypress.Commands.add('contactInfo', (phoneNumber, email) => {
   cy.get('tr[class="coupon-head"]').click()
   cy.get('input[id="couponCode"]').click({force: true}).type('333553')
   //cy.contains("couponCode").click()
-  //cy.get('tr[class="withoutCoupon"]').click({force: true}).type('3')
+  cy.get('tr[class="withoutCoupon"]').click({force: true}).type('3')
   cy.get('input[id="insuranceRequest"]').click()
   cy.get('a[id="addCoupon"]').click()
 })
 
 Cypress.Commands.add('paymentInfo', (CardNumber, CardExp, CardSec, CardOwner) => {
-  //cy.get('form[id="paymentForm"]').click()
-  //cy.get('input[id="pan"]').click().type('3434')
-  //cy.get('div[id="divPayment"]').click()
-  //cy.get('div[class="col-xs-6 cc-select-month inputstyle"]').click()
-  //cy.get('span[class="field-arrow"]').eq('0').click({force: true})
-  //cy.get('span[class="field-value-select"]').eq('0').click({force: true})
-  //cy.get('div[class="clearfix"]').eq('0').click()
-  //cy.get('div[class="col-xs-6 cc-select-month inputstyle"]').click()
-  //cy.get('span[class="field-arrow"]').eq('0').click({force: true})
-  //cy.get('.btn').eq('3').click({force: true})
-  //cy.get('img[src="/images/newui/icon-down-blue.png"]').eq('0').click({force: true})
-  //cy.get('span[class="field-value-select"]').eq('0')
-  //cy.get('.btn').eq('3').click({force: true})
-  //cy.get('button').eq('7').debug().click({force: true})
-  //cy.get('select[id="cc_expire_month"]')
-  //cy.get('[value="02"]').click({force: true})
-  //cy.get('select[id="cc_expire_year"]')
-  //cy.get('span[class="field-value-select"]').eq('1').click('right')
+  cy.get('form[id="paymentForm"]').click()
+  cy.get('input[id="pan"]').click().type('3434')
+  cy.get('div[id="divPayment"]').click()
+  cy.get('div[class="col-xs-6 cc-select-month inputstyle"]').click()
+  cy.get('span[class="field-arrow"]').eq('0').click({force: true})
+  cy.get('span[class="field-value-select"]').eq('0').click({force: true})
+  cy.get('div[class="clearfix"]').eq('0').click()
+  cy.get('div[class="col-xs-6 cc-select-month inputstyle"]').click()
+  cy.get('span[class="field-arrow"]').eq('0').click({force: true})
+  cy.get('.btn').eq('3').click({force: true})
+  cy.get('img[src="/images/newui/icon-down-blue.png"]').eq('0').click({force: true})
+  cy.get('span[class="field-value-select"]').eq('0')
+  cy.get('.btn').eq('3').click({force: true})
+  cy.get('button').eq('7').debug().click({force: true})
+  cy.get('select[id="cc_expire_month"]')
+  cy.get('[value="02"]').click({force: true})
+  cy.get('select[id="cc_expire_year"]')
+  cy.get('span[class="field-value-select"]').eq('1').click({force: true})
   //cy.contains('span[class="field-arrow"]').find('button').click({force: true})
+  //cy.get('span[class="field-arrow"]').eq('1').click({force: true})
   //cy.get("#dropdown").select('2022');
   //AFTER ALL THESE STEPS, ı FINALLY FOUND OUT THE SOLUTION:
-  cy.get('select[id="cc_expire_year"]').select('22').should('have.value', '22')
+  cy.get('select[id="cc_expire_year"]').select('23').should('have.value', '23')
   cy.get('select[id="cc_expire_month"]').select('03').should('have.value', '03')
   cy.get('input[id="cv2"]').click().type(6868)
   cy.get('input[class="form-control required upperNomark cc_owner_name alphaOnly acceptComma acceptPoint"]').click().type('dd')  
@@ -121,7 +98,7 @@ Cypress.Commands.add('paymentInfo', (CardNumber, CardExp, CardSec, CardOwner) =>
     cy.get('a[href="#"]').contains('31').click()
     cy.get('input[id="travelEndDate"]').click()
     cy.get('td[class=" ui-datepicker-week-end "]').eq('0').click()
-    cy.get('a[class="ui-state-default"]').contains('31').click({force: true})
+    cy.get('a[class="ui-state-default"]').contains('5').click({force: true})
     cy.get('span[class="ddlabel"]').eq('0').click()
     cy.get('span[class="ddlabel"]').eq('48').click()
     cy.get('input[id="adult_name_0"]').click().type('Dams')
@@ -131,7 +108,19 @@ Cypress.Commands.add('paymentInfo', (CardNumber, CardExp, CardSec, CardOwner) =>
     cy.get('button[class="searchButton btn btn-primary"]').click() 
    })
 
-  
-  
-  
+   Cypress.Commands.add('alert', (priceAlert) => {
+   cy.get('a[href="javascript:void(0)"]').eq('6').click()
+  // cy.get('div[class="col-xs-12"]').click()
+   cy.get('input[id="pa-fromAirport"]').eq('0').click({force: true}).type('Cartagena')
+   cy.get('input[id="pa-toAirport"]').eq('0').click({force: true}).type('Ankara')
+   cy.get('div[class="row direction"]').click()
+   cy.get('span[class="ui-button-text"]').eq('2').click({force: true})
+   cy.get('input[id="pa-returnDate"]').click({force: true})
+   cy.get('span[class="ui-icon ui-icon-circle-triangle-e"]').click()
+   cy.get('a[class="ui-state-default"]').contains('11').click()
+   cy.get('a[href="javascript:void(0)"]').eq('7').click({force: true})
+   cy.get('input[id="pa-email"]').click({force: true}).type('d@email')
+   cy.get('input[id="subscription"]').click()
+   cy.get('button[id="btnPriceAlert"]').eq('0').click()
+   })
 
